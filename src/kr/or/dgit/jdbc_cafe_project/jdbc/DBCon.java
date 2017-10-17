@@ -23,9 +23,9 @@ public class DBCon {
 			System.err.printf("%s - %s%n", e.getErrorCode(), e.getMessage());
 			e.printStackTrace();
 		}
-		System.out.println(properties.getProperty("user"));
+/*		System.out.println(properties.getProperty("user"));
 		System.out.println(properties.getProperty("pwd"));
-		System.out.println(properties.getProperty("url"));
+		System.out.println(properties.getProperty("url"));*/
 	}
 	
 	private Properties getProperties(String propertiesPath) {
