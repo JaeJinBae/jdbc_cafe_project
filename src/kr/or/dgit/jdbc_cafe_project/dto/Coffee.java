@@ -7,6 +7,9 @@ public class Coffee {
 	int salesamount;
 	int percentmargin;
 	
+	public Coffee() {
+	}
+	
 	public Coffee(String code, String name, int cost, int salesamount, int percentmargin) {
 		this.code = code;
 		this.name = name;
@@ -59,8 +62,7 @@ public class Coffee {
 		this.percentmargin = percentmargin;
 	}
 
-	public Coffee() {
-	}
+	
 
 	@Override
 	public String toString() {

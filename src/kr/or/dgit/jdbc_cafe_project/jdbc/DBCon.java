@@ -11,6 +11,10 @@ public class DBCon {
 	private static final DBCon instance = new DBCon();
 	private Connection connection;
 
+	public static void main(String[] args) {
+		DBCon dbcon=new DBCon();
+	}
+	
 	public static DBCon getInstance() {
 		return instance;
 	}
@@ -23,9 +27,9 @@ public class DBCon {
 			System.err.printf("%s - %s%n", e.getErrorCode(), e.getMessage());
 			e.printStackTrace();
 		}
-		System.out.println(properties.getProperty("user"));
-		System.out.println(properties.getProperty("pwd"));
-		System.out.println(properties.getProperty("url"));
+//		System.out.println(properties.getProperty("user"));
+//		System.out.println(properties.getProperty("pwd"));
+//		System.out.println(properties.getProperty("url"));
 	}
 	
 	private Properties getProperties(String propertiesPath) {
