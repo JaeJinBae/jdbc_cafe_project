@@ -1,6 +1,6 @@
 package kr.or.dgit.jdbc_cafe_project.dto;
 
-public class ShowView {
+public class ShowAllBySalesprice {
 	int crank;
 	String code;
 	String name;
@@ -12,10 +12,10 @@ public class ShowView {
 	int salesprice;
 	int margincost;
 	
-	public ShowView() {
+	public ShowAllBySalesprice() {
 	}
 	
-	public ShowView(int crank, String code, String name, int cost, int salesamount, int percentmargin, int supplycost,
+	public ShowAllBySalesprice(int crank, String code, String name, int cost, int salesamount, int percentmargin, int supplycost,
 			int tax, int salesprice, int margincost) {
 		this.crank = crank;
 		this.code = code;
@@ -29,7 +29,7 @@ public class ShowView {
 		this.margincost = margincost;
 	}
 	
-	public ShowView(String code) {
+	public ShowAllBySalesprice(String code) {
 		this.code = code;
 	}
 

@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import kr.or.dgit.jdbc_cafe_project.dao.CoffeeDao;
-import kr.or.dgit.jdbc_cafe_project.dao.ShowViewDao;
+import kr.or.dgit.jdbc_cafe_project.dao.ShowAllBySalespriceDao;
 import kr.or.dgit.jdbc_cafe_project.dto.Coffee;
-import kr.or.dgit.jdbc_cafe_project.dto.ShowView;
+import kr.or.dgit.jdbc_cafe_project.dto.ShowAllBySalesprice;
 
 public class TestMain {
 
 	public static void main(String[] args) {
-		testInsert();
+//		testInsert();
 		
-		testShowList();
+		testShowAll();
 		
 	}
 
@@ -25,16 +25,16 @@ public class TestMain {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		testShowList();
+		testShowAll();
 	}
 
-	private static void testShowList() {
-		ShowViewDao dao=ShowViewDao.getInstance();
+	private static void testShowAll() {
+		ShowAllBySalespriceDao dao=ShowAllBySalespriceDao.getInstance();
 		
-		List<ShowView> lists;
+		List<ShowAllBySalesprice> lists;
 		try {
 			lists = dao.selectItemByAll();
-			for (ShowView showview : lists) {
+			for (ShowAllBySalesprice showview : lists) {
 				System.out.println(showview);
 			}
 		} catch (SQLException e) {
