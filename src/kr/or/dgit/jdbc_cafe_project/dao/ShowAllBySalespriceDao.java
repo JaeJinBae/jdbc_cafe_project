@@ -41,15 +41,16 @@ public class ShowAllBySalespriceDao implements SqlDao<ShowAllBySalesprice> {
 
 	@Override
 	public List<ShowAllBySalesprice> selectItemByAll() throws SQLException {
-		List<ShowAllBySalesprice> lists=new ArrayList<>();
 		String sql="select * from showAllBySalesprice";
+		List<ShowAllBySalesprice> sabs=new ArrayList<>();
+		
 		try (PreparedStatement pstmt=DBCon.getInstance().getConnection().prepareStatement(sql);
 				ResultSet rs=pstmt.executeQuery();){
 			while(rs.next()){
-				lists.add(getShowView(rs));
+				sabs.add(getShowView(rs));
 			}
 		}
-		return lists;
+		return sabs;
 	}
 
 	private ShowAllBySalesprice getShowView(ResultSet rs) throws SQLException {
