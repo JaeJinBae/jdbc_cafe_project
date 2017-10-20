@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 import kr.or.dgit.jdbc_cafe_project.dao.CoffeeDao;
+import kr.or.dgit.jdbc_cafe_project.dao.ShowAllByMargincostDao;
 import kr.or.dgit.jdbc_cafe_project.dao.ShowAllBySalespriceDao;
 import kr.or.dgit.jdbc_cafe_project.dto.Coffee;
+import kr.or.dgit.jdbc_cafe_project.dto.ShowAllByMargincost;
 import kr.or.dgit.jdbc_cafe_project.dto.ShowAllBySalesprice;
 
 public class TestMain {
@@ -13,9 +15,22 @@ public class TestMain {
 	public static void main(String[] args) {
 //		testInsert();
 		
-		testShowAll();
+//		testShowAllBySalesprice();
+//		testShowAllByMargincost();
+	}
+
+	private static void testShowAllByMargincost() {
+		ShowAllByMargincostDao dao=ShowAllByMargincostDao.getInstance();
 		
-	
+		List<ShowAllByMargincost> lists;
+		try {
+			lists = dao.selectItemByAll();
+			for (ShowAllByMargincost showview : lists) {
+				System.out.println(showview);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static void testInsert() {
@@ -26,10 +41,10 @@ public class TestMain {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		testShowAll();
+		testShowAllBySalesprice();
 	}
 
-	private static void testShowAll() {
+	private static void testShowAllBySalesprice() {
 		ShowAllBySalespriceDao dao=ShowAllBySalespriceDao.getInstance();
 		
 		List<ShowAllBySalesprice> lists;
