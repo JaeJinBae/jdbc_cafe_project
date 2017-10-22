@@ -50,6 +50,10 @@ public class ShowAllBySalesprice {
 				crank, code, name, cost, salesamount, supplycost, tax, salesprice, percentmargin, margincost);
 	}
 
+	public Object[] toArray() {
+		return new Object[]{crank, code, name, cost, salesamount, supplycost, tax, salesprice, percentmargin, margincost};
+	}
+
 	
 
 	
