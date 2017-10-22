@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import kr.or.dgit.jdbc_cafe_project.dto.Coffee;
 import kr.or.dgit.jdbc_cafe_project.jdbc.DBCon;
 
@@ -26,6 +28,9 @@ public class CoffeeDao implements SqlDao<Coffee> {
 			pstmt.setInt(4, item.getSalesamount());
 			pstmt.setInt(5, item.getPercentmargin());
 			pstmt.executeUpdate();
+			JOptionPane.showMessageDialog(null, "입력 완료!");
+		}catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "입력실패 중복 되는지 확인하세요");
 		}
 	}
 
@@ -62,11 +67,11 @@ public class CoffeeDao implements SqlDao<Coffee> {
 	}
 	
 	private Coffee getCoffee(ResultSet rs) throws SQLException {
-		String coffeeCode=rs.getString(2);
-		String coffeeName=rs.getString(3);
-		int coffeeCost=rs.getInt(4);
-		int cofeeSalesamount=rs.getInt(5);
-		int coffeePercentmargin=rs.getInt(6);
+		String coffeeCode=rs.getString("code");
+		String coffeeName=rs.getString("name");
+		int coffeeCost=rs.getInt("cost");
+		int cofeeSalesamount=rs.getInt("salesamount");
+		int coffeePercentmargin=rs.getInt("percentmargin");
 		return new Coffee(coffeeCode, coffeeName, coffeeCost, cofeeSalesamount, coffeePercentmargin);
 	}
 }
