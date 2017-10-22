@@ -32,7 +32,7 @@ public class ShowAllBySalespriceDao implements SqlDao<ShowAllBySalesprice> {
 		
 		try(ResultSet rs=pstmt.executeQuery();){
 			if(rs.next()){
-				showview=getShowView(rs);
+				showview=getShow(rs);
 			}
 		}
 	}
@@ -47,23 +47,23 @@ public class ShowAllBySalespriceDao implements SqlDao<ShowAllBySalesprice> {
 		try (PreparedStatement pstmt=DBCon.getInstance().getConnection().prepareStatement(sql);
 				ResultSet rs=pstmt.executeQuery();){
 			while(rs.next()){
-				sabs.add(getShowView(rs));
+				sabs.add(getShow(rs));
 			}
 		}
 		return sabs;
 	}
 
-	private ShowAllBySalesprice getShowView(ResultSet rs) throws SQLException {
-		int showrank=rs.getInt(1);
-		String showCode=rs.getString(2);
-		String showName=rs.getString(3);
-		int showCost=rs.getInt(4);
-		int showSalesamount=rs.getInt(5);
-		int showPercentmargin=rs.getInt(6);
-		int showSupplycost=rs.getInt(7);
-		int showTax=rs.getInt(8);
-		int showSalesprice=rs.getInt(9);
-		int showMargincost=rs.getInt(10);
+	private ShowAllBySalesprice getShow(ResultSet rs) throws SQLException {
+		int showrank=rs.getInt("crank");
+		String showCode=rs.getString("code");
+		String showName=rs.getString("name");
+		int showCost=rs.getInt("cost");
+		int showSalesamount=rs.getInt("salesamount");
+		int showPercentmargin=rs.getInt("percentmargin");
+		int showSupplycost=rs.getInt("supplycost");
+		int showTax=rs.getInt("tax");
+		int showSalesprice=rs.getInt("salesprice");
+		int showMargincost=rs.getInt("margincost");
 		return new ShowAllBySalesprice(showrank, showCode, showName, showCost, showSalesamount, showPercentmargin, showSupplycost, showTax, showSalesprice, showMargincost);
 	}
 

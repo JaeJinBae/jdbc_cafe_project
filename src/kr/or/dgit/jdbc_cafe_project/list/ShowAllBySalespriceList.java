@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,10 +17,10 @@ import kr.or.dgit.jdbc_cafe_project.service.ShowAllBySalespriceService;
 
 public class ShowAllBySalespriceList extends JPanel {
 	private ShowAllBySalespriceService service;
-	private JTable table;
+	public JTable table;
 
 	public ShowAllBySalespriceList(ShowAllBySalespriceService service) {
-		super();
+		//super();
 		this.service = service;
 	}
 
@@ -37,10 +36,10 @@ public class ShowAllBySalespriceList extends JPanel {
 	}
 	
 	public void loadData() {
-		table.clearSelection();
-		DefaultTableModel model = new DefaultTableModel(getData(), getColumnNames());
+//		table.clearSelection();
+		DefaultTableModel model=new DefaultTableModel(getData(), getColumnNames());
 		table.setModel(model);
-//		setAlignWidth();
+		setAlignWidth();
 	}
 	
 	public void setAlignWidth() {
@@ -79,7 +78,6 @@ public class ShowAllBySalespriceList extends JPanel {
 		Object[][] data = new Object[lists.size()][];
 		for (int i = 0; i < lists.size(); i++) {
 			data[i] = lists.get(i).toArray();
-			JOptionPane.showMessageDialog(null, data[i]);
 		}
 		return data;
 	}

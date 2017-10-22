@@ -46,7 +46,7 @@ public class ShowAllBySalesprice {
 	@Override
 	public String toString() {
 		return String.format(
-				"순위: %s, 제품코드: %s, 제품명: %s, 단가: %s, 판매수량: %s, 공급가액: %s, 부가세액: %s, 판매금액: %s, 마진율: %s, 마진액: %s]",
+				"순위: %s, 제품코드: %s, 제품명: %s, 단가: %s, 판매수량: %s, 공급가액: %s, 부가세액: %s, 판매금액: %s, 마진율: %s, 마진액: %s",
 				crank, code, name, cost, salesamount, supplycost, tax, salesprice, percentmargin, margincost);
 	}
 

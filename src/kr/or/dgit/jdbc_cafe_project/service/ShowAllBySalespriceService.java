@@ -8,7 +8,8 @@ import kr.or.dgit.jdbc_cafe_project.dto.ShowAllBySalesprice;
 
 public class ShowAllBySalespriceService {
 	private SqlDao<ShowAllBySalesprice> showAllBySalespriceDao;
-	public List<ShowAllBySalesprice> selectShowByAll(){
+
+	public List<ShowAllBySalesprice> selectShowByAll() {
 		try {
 			return showAllBySalespriceDao.selectItemByAll();
 		} catch (SQLException e) {
