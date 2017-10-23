@@ -5,7 +5,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Vector;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,20 +17,26 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import javafx.scene.control.ComboBox;
+import kr.or.dgit.jdbc_cafe_project.content.CoffeeContent;
 import kr.or.dgit.jdbc_cafe_project.dao.CoffeeDao;
 import kr.or.dgit.jdbc_cafe_project.dto.Coffee;
+import kr.or.dgit.jdbc_cafe_project.service.CoffeeService;
+import kr.or.dgit.jdbc_cafe_project.view.CoffeeView;
 import kr.or.dgit.jdbc_cafe_project.view.ShowAllByMargincostView;
 import kr.or.dgit.jdbc_cafe_project.view.ShowAllBySalespriceView;
+import javax.swing.JComboBox;
 
-public class StartProject extends JFrame {
+public class StartProject extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
-	private JTextField tfCode;
 	private JTextField tfName;
 	private JTextField tfCost;
 	private JTextField tfSalesPrice;
 	private JTextField tfPercentMargin;
-
+	private JButton btnAdd;
+	private JComboBox comboBox;
+	private CoffeeService service;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -45,21 +55,24 @@ public class StartProject extends JFrame {
 	public StartProject() {
 		setTitle("Cafe Management System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 571, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
+		service=new CoffeeService();
+				
 		JPanel panel = new JPanel();
 		contentPane.add(panel);
 		
 		JLabel lblCode = new JLabel("제품코드");
 		panel.add(lblCode);
 		
-		tfCode = new JTextField();
-		panel.add(tfCode);
-		tfCode.setColumns(10);
+		comboBox = new JComboBox();
+		setCoffeeCode();
+		panel.add(comboBox);
+		
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1);
@@ -68,6 +81,7 @@ public class StartProject extends JFrame {
 		panel_1.add(lblName);
 		
 		tfName = new JTextField();
+		
 		panel_1.add(tfName);
 		tfName.setColumns(10);
 		
@@ -107,10 +121,10 @@ public class StartProject extends JFrame {
 		JButton btnInsert = new JButton("입력");
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				getContent();
+				
 				CoffeeDao coffeeDao=new CoffeeDao();
 				try {
-					coffeeDao.insertItem(getContent());
+					coffeeDao.updateItem(getContent());
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -125,6 +139,12 @@ public class StartProject extends JFrame {
 				sabspv.setVisible(true);
 			}
 		});
+		
+		
+		btnAdd = new JButton("메뉴추가");
+		btnAdd.addActionListener(this);
+		panel_5.add(btnAdd);
+		
 		panel_5.add(btnShow1);
 		
 		JButton btnShow2 = new JButton("마진액 순위로 보기");
@@ -136,13 +156,32 @@ public class StartProject extends JFrame {
 		});
 		panel_5.add(btnShow2);
 	}
-	private Coffee getContent() {
-		String coffeeCode=tfCode.getText().trim();
+	
+	public Coffee getContent() {
+		Coffee coffeeCode=(Coffee) comboBox.getSelectedItem();
 		String coffeeName=tfName.getText().trim();
 		int coffeeCost=Integer.parseInt(tfCost.getText().trim());
 		int coffeeSalesprice=Integer.parseInt(tfSalesPrice.getText().trim());
 		int coffeePercentmargin=Integer.parseInt(tfPercentMargin.getText().trim());
-		return new Coffee(coffeeCode, coffeeName, coffeeCost, coffeeSalesprice, coffeePercentmargin);	
+		return new Coffee(coffeeCode.getCode(), coffeeName, coffeeCost, coffeeSalesprice, coffeePercentmargin);	
 	}
+	
+	public void setCoffeeCode(){
+		List<Coffee> lists = service.selectCoffeeByAll();
+		Vector<Coffee> coffees = new Vector<>(lists);
+		ComboBoxModel<Coffee> model = new DefaultComboBoxModel<>(coffees);
+		comboBox.setModel(model);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnAdd) {
+			do_btnAdd_actionPerformed(e);
+		}
+	}
+	protected void do_btnAdd_actionPerformed(ActionEvent e) {
+		CoffeeView coffeeview=new CoffeeView();
+		coffeeview.setVisible(true);
+	}
+	
 	
 }

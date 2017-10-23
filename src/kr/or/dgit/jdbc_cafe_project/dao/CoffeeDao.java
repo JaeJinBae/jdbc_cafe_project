@@ -13,7 +13,7 @@ import kr.or.dgit.jdbc_cafe_project.jdbc.DBCon;
 
 public class CoffeeDao implements SqlDao<Coffee> {
 	private static final CoffeeDao Instance=new CoffeeDao();
-	
+
 	public static CoffeeDao getInstance() {
 		return Instance;
 	}
@@ -33,7 +33,33 @@ public class CoffeeDao implements SqlDao<Coffee> {
 			JOptionPane.showMessageDialog(null, "입력실패 중복 되는지 확인하세요");
 		}
 	}
-
+	
+	public void updateItem(Coffee item) throws SQLException {
+		String sql = "update coffee set cost=?, salesamount=?, percentmargin=? where code=?";
+		try (PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);){
+			pstmt.setInt(1, item.getCost());
+			pstmt.setInt(2, item.getSalesamount());
+			pstmt.setInt(3, item.getPercentmargin());
+			pstmt.setString(4, item.getCode());
+			pstmt.executeUpdate();
+			JOptionPane.showMessageDialog(null, "수정완료");
+		}catch (SQLException e) {
+			System.err.printf("%s", e.getMessage());
+		}
+	}
+	
+	public void addItem(Coffee item) throws SQLException{
+		String sql="insert into coffee (code, name) values (?, ?)";
+		try(PreparedStatement pstmt =DBCon.getInstance().getConnection().prepareStatement(sql);){
+			pstmt.setString(1, item.getCode());
+			pstmt.setString(2, item.getName());
+			pstmt.executeUpdate();
+			JOptionPane.showMessageDialog(null, "추가 완료!");
+		}catch(SQLException e){
+			System.err.printf("%s", e.getErrorCode());
+		}
+	}
+	
 	@Override
 	public Coffee selectItemByCode(Coffee item) throws SQLException {
 		String sql="select * from coffee where code=?";
@@ -65,6 +91,8 @@ public class CoffeeDao implements SqlDao<Coffee> {
 		}
 		return lists;
 	}
+	
+
 	
 	private Coffee getCoffee(ResultSet rs) throws SQLException {
 		String coffeeCode=rs.getString("code");

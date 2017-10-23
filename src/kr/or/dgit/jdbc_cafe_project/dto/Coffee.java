@@ -10,6 +10,11 @@ public class Coffee {
 	public Coffee() {
 	}
 	
+	public Coffee(String code, String name) {
+		this.code = code;
+		this.name = name;
+	}
+
 	public Coffee(String code, String name, int cost, int salesamount, int percentmargin) {
 		this.code = code;
 		this.name = name;
@@ -66,8 +71,7 @@ public class Coffee {
 
 	@Override
 	public String toString() {
-		return String.format("Coffee [code=%s, name=%s, cost=%s, salesamount=%s, percentmargin=%s]", code, name, cost,
-				salesamount, percentmargin);
+		return String.format("%s (%s)", code, name);
 	}
 	
 	

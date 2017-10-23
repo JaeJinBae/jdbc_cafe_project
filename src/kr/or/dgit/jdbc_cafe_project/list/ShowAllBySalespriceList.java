@@ -47,7 +47,7 @@ public class ShowAllBySalespriceList extends JPanel {
 	
 	public void setCellWidth(int...width) {
 		TableColumnModel cModel = table.getColumnModel();
-		System.out.println(Arrays.toString(width));
+//		System.out.println(Arrays.toString(width));
 		for(int i=0; i<width.length; i++){
 			cModel.getColumn(i).setPreferredWidth(width[i]);
 		}
@@ -77,7 +77,6 @@ public class ShowAllBySalespriceList extends JPanel {
 				
 		for (int i = 0; i < lists.size(); i++) {
 			data[i] = lists.get(i).toArray();
-			System.out.println(Arrays.toString(data[i]));
 		}
 		
 		return data;

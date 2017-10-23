@@ -9,7 +9,7 @@ import kr.or.dgit.jdbc_cafe_project.dto.ShowAllByMargincost;
 import kr.or.dgit.jdbc_cafe_project.dto.ShowAllBySalesprice;
 
 public class ShowAllByMargincostService {
-	private SqlDao<ShowAllByMargincost> showAllByMargincost;
+//	private SqlDao<ShowAllByMargincost> showAllByMargincost;
 
 	public List<ShowAllByMargincost> selectShowByAll() {
 		ShowAllByMargincostDao dao=ShowAllByMargincostDao.getInstance();
