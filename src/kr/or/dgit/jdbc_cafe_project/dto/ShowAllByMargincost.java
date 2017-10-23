@@ -51,7 +51,7 @@ public class ShowAllByMargincost {
 	}
 
 	public Object[] toArray() {
-		return new Object[]{crank, code, name, cost, salesamount, supplycost, tax, salesprice, percentmargin, margincost};
+		return new Object[]{crank, code, name, cost, salesamount, percentmargin, supplycost, tax, salesprice, margincost};
 	}
 
 	
