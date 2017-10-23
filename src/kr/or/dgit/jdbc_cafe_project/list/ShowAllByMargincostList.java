@@ -21,12 +21,8 @@ public class ShowAllByMargincostList extends JPanel {
 	private ShowAllByMargincostService service;
 	public JTable table;
 
-	public ShowAllByMargincostList(ShowAllByMargincostService service) {
-		//super();
-		this.service = service;
-	}
-
 	public ShowAllByMargincostList() {
+		this.service = new ShowAllByMargincostService(); 
 		setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();

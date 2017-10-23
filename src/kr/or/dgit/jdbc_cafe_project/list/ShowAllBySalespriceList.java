@@ -19,12 +19,8 @@ public class ShowAllBySalespriceList extends JPanel {
 	private ShowAllBySalespriceService service;
 	public JTable table;
 
-	public ShowAllBySalespriceList(ShowAllBySalespriceService service) {
-		//super();
-		this.service = service;
-	}
-
 	public ShowAllBySalespriceList() {
+		this.service = new ShowAllBySalespriceService();
 		setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -37,9 +33,11 @@ public class ShowAllBySalespriceList extends JPanel {
 	
 	public void loadData() {
 //		table.clearSelection();
-		DefaultTableModel model=new DefaultTableModel(getData(), getColumnNames());
+		DefaultTableModel model= new DefaultTableModel(getData(), getColumnNames());
+		
 		table.setModel(model);
 		setAlignWidth();
+		
 	}
 	
 	public void setAlignWidth() {
@@ -74,11 +72,14 @@ public class ShowAllBySalespriceList extends JPanel {
 	
 	public Object[][] getData() {
 		List<ShowAllBySalesprice> lists = service.selectShowByAll();
-
+		
 		Object[][] data = new Object[lists.size()][];
+				
 		for (int i = 0; i < lists.size(); i++) {
 			data[i] = lists.get(i).toArray();
+			System.out.println(Arrays.toString(data[i]));
 		}
+		
 		return data;
 	}
 }

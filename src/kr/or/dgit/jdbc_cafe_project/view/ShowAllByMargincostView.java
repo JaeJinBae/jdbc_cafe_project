@@ -7,31 +7,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import kr.or.dgit.jdbc_cafe_project.list.ShowAllBySalespriceList;
+import kr.or.dgit.jdbc_cafe_project.list.ShowAllByMargincostList;
+import kr.or.dgit.jdbc_cafe_project.service.ShowAllByMargincostService;
 import kr.or.dgit.jdbc_cafe_project.service.ShowAllBySalespriceService;
 
 public class ShowAllByMargincostView extends JFrame {
 
 	private JPanel contentPane;
-	private ShowAllBySalespriceService service;
-	private ShowAllBySalespriceList pList;
+	private ShowAllByMargincostService service;
+	private ShowAllByMargincostList pList;
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ShowAllByMargincostView frame = new ShowAllByMargincostView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 
 	public ShowAllByMargincostView() {
-		service=new ShowAllBySalespriceService();
+		service=new ShowAllByMargincostService();
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -39,7 +27,7 @@ public class ShowAllByMargincostView extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		pList=new ShowAllBySalespriceList(service);
+		pList=new ShowAllByMargincostList();
 		pList.loadData();
 		contentPane.add(pList, BorderLayout.CENTER);
 	}
