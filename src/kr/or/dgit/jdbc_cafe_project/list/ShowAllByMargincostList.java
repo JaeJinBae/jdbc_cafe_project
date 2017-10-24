@@ -67,7 +67,7 @@ public class ShowAllByMargincostList extends JPanel {
 	}
 	
 	public String[] getColumnNames() {
-		return new String[] { "순위", "제품코드", "제품명", "제품단가", "판매량", "마진율", "공급가액", "부가세액", "판매가액", "마진가액" };
+		return new String[] { "순위", "제품코드", "제품명", "제품단가", "판매량", "마진율", "공급가액", "부가세액", "판매금액", "마진가액" };
 	}
 	
 	public Object[][] getData() {
@@ -75,7 +75,11 @@ public class ShowAllByMargincostList extends JPanel {
 
 		Object[][] data = new Object[lists.size()][];
 		for (int i = 0; i < lists.size(); i++) {
-			data[i] = lists.get(i).toArray();
+			if(i==lists.size()-1){
+				data[i] = lists.get(i).toArray2();
+			}else{
+				data[i] = lists.get(i).toArray();
+			}
 		}
 		return data;
 	}

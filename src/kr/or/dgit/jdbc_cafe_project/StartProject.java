@@ -94,16 +94,18 @@ public class StartProject extends JFrame implements ActionListener {
 		tfCost = new JTextField();
 		panel_2.add(tfCost);
 		tfCost.setColumns(10);
+		setCost();
 		
 		JPanel panel_3 = new JPanel();
 		contentPane.add(panel_3);
 		
-		JLabel lblSalesPrice = new JLabel("판매수량");
-		panel_3.add(lblSalesPrice);
+		JLabel lblSalesAmount = new JLabel("판매수량");
+		panel_3.add(lblSalesAmount);
 		
 		tfSalesPrice = new JTextField();
 		panel_3.add(tfSalesPrice);
 		tfSalesPrice.setColumns(10);
+		setSalesAmount();
 		
 		JPanel panel_4 = new JPanel();
 		contentPane.add(panel_4);
@@ -114,6 +116,7 @@ public class StartProject extends JFrame implements ActionListener {
 		tfPercentMargin = new JTextField();
 		panel_4.add(tfPercentMargin);
 		tfPercentMargin.setColumns(10);
+		setPercentMargin();
 		
 		JPanel panel_5 = new JPanel();
 		contentPane.add(panel_5);
@@ -157,12 +160,37 @@ public class StartProject extends JFrame implements ActionListener {
 		panel_5.add(btnShow2);
 	}
 	
-	public void setName(){
-		tfName.setText(getName((Coffee) comboBox.getSelectedItem()));
+	
+	public String getPercentMargin(Coffee item){
+		return service.selectItemByCode(item).getPercentmargin();
+	}
+	
+	public void setPercentMargin(){
+		tfPercentMargin.setText(getPercentMargin((Coffee) comboBox.getSelectedItem()));
+	}
+	
+	public String getSalesAmount(Coffee item){
+		return service.selectItemByCode(item).getCost();
+	}
+	
+	public void setSalesAmount(){
+		tfSalesPrice.setText(getSalesAmount((Coffee) comboBox.getSelectedItem()));
+	}
+	
+	public String getCost(Coffee item){
+		return service.selectItemByCode(item).getCost();
+	}
+	
+	public void setCost(){
+		tfCost.setText(getCost((Coffee) comboBox.getSelectedItem()));
 	}
 	
 	public String getName(Coffee item){
 		return service.selectItemByCode(item).getName();
+	}
+	
+	public void setName(){
+		tfName.setText(getName((Coffee) comboBox.getSelectedItem()));
 	}
 	
 	public Coffee getContent() {
@@ -197,5 +225,8 @@ public class StartProject extends JFrame implements ActionListener {
 	
 	protected void do_comboBox_actionPerformed(ActionEvent e) {
 		setName();
+		setCost();
+		setSalesAmount();
+		setPercentMargin();
 	}
 }

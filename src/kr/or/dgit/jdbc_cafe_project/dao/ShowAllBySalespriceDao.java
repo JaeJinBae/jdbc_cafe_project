@@ -60,13 +60,13 @@ public class ShowAllBySalespriceDao implements SqlDao<ShowAllBySalesprice> {
 		String showCode=rs.getString("code");
 		String showName=rs.getString("name");
 //		System.out.println(String.format("%,d",rs.getInt("cost")));
-		String showCost=rs.getString("cost");
-		String showSalesamount=rs.getString("salesamount");
+		String showCost=String.format("%,d", rs.getInt("cost"));
+		String showSalesamount=String.format("%,d", rs.getInt("salesamount"));
 		String showPercentmargin=rs.getString("percentmargin");
-		String showSupplycost=rs.getString("supplycost");
-		String showTax=rs.getString("tax");
-		String showSalesprice=rs.getString("salesprice");
-		String showMargincost=rs.getString("margincost");
+		String showSupplycost=String.format("%,d", rs.getInt("supplycost"));
+		String showTax=String.format("%,d",rs.getInt("tax"));
+		String showSalesprice=String.format("%,d", rs.getInt("salesprice"));
+		String showMargincost=String.format("%,d",rs.getInt("margincost"));
 		return new ShowAllBySalesprice(showrank, showCode, showName, showCost, showSalesamount, showPercentmargin, showSupplycost, showTax, showSalesprice, showMargincost);
 	}
 

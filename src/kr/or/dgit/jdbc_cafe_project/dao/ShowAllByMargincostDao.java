@@ -32,7 +32,7 @@ public class ShowAllByMargincostDao implements SqlDao<ShowAllByMargincost> {
 		
 		try(ResultSet rs=pstmt.executeQuery();){
 			if(rs.next()){
-				showview=getShowView(rs);
+				showview=getShow(rs);
 			}
 		}
 	}
@@ -42,27 +42,27 @@ public class ShowAllByMargincostDao implements SqlDao<ShowAllByMargincost> {
 	@Override
 	public List<ShowAllByMargincost> selectItemByAll() throws SQLException {
 		List<ShowAllByMargincost> lists=new ArrayList<>();
-		String sql="select * from showAllByMargincost";
+		String sql="select * from showAllByMargincost union select '합계', '', '', '', '', '',sum(supplycost), sum(tax), sum(salesprice), sum(margincost) from  showAllByMargincost";
 		try (PreparedStatement pstmt=DBCon.getInstance().getConnection().prepareStatement(sql);
 				ResultSet rs=pstmt.executeQuery();){
 			while(rs.next()){
-				lists.add(getShowView(rs));
+				lists.add(getShow(rs));
 			}
 		}
 		return lists;
 	}
 
-	private ShowAllByMargincost getShowView(ResultSet rs) throws SQLException {
-		String showrank=rs.getString(1);
-		String showCode=rs.getString(2);
-		String showName=rs.getString(3);
-		String showCost=rs.getString(4);
-		String showSalesamount=rs.getString(5);
-		String showPercentmargin=rs.getString(6);
-		String showSupplycost=rs.getString(7);
-		String showTax=rs.getString(8);
-		String showSalesprice=rs.getString(9);
-		String showMargincost=rs.getString(10);
+	private ShowAllByMargincost getShow(ResultSet rs) throws SQLException {
+		String showrank=rs.getString("crank");
+		String showCode=rs.getString("code");
+		String showName=rs.getString("name");
+		String showCost=String.format("%,d", rs.getInt("cost"));
+		String showSalesamount=String.format("%,d", rs.getInt("salesamount"));
+		String showPercentmargin=rs.getString("percentmargin");
+		String showSupplycost=String.format("%,d", rs.getInt("supplycost"));
+		String showTax=String.format("%,d",rs.getInt("tax"));
+		String showSalesprice=String.format("%,d", rs.getInt("salesprice"));
+		String showMargincost=String.format("%,d",rs.getInt("margincost"));
 		return new ShowAllByMargincost(showrank, showCode, showName, showCost, showSalesamount, showPercentmargin, showSupplycost, showTax, showSalesprice, showMargincost);
 	}
 

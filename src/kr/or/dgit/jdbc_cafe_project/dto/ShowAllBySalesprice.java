@@ -55,7 +55,9 @@ public class ShowAllBySalesprice {
 	}
 
 	
-
+	public Object[] toArray2() {
+		return new Object[]{crank, "", "", "", "", "", supplycost, tax, salesprice, margincost};
+	}
 	
 	
 	

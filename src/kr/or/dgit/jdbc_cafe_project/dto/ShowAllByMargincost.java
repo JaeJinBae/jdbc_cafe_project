@@ -54,7 +54,9 @@ public class ShowAllByMargincost {
 		return new Object[]{crank, code, name, cost, salesamount, percentmargin, supplycost, tax, salesprice, margincost};
 	}
 
-	
+	public Object[] toArray2() {
+		return new Object[]{crank, "", "", "", "", "", supplycost, tax, salesprice, margincost};
+	}
 
 	
 	
