@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.or.dgit.jdbc_cafe_project.dto.ShowAllByMargincost;
-import kr.or.dgit.jdbc_cafe_project.dto.ShowAllBySalesprice;
 import kr.or.dgit.jdbc_cafe_project.jdbc.DBCon;
 
 public class ShowAllByMargincostDao implements SqlDao<ShowAllByMargincost> {
@@ -54,16 +53,16 @@ public class ShowAllByMargincostDao implements SqlDao<ShowAllByMargincost> {
 	}
 
 	private ShowAllByMargincost getShowView(ResultSet rs) throws SQLException {
-		int showrank=rs.getInt(1);
+		String showrank=rs.getString(1);
 		String showCode=rs.getString(2);
 		String showName=rs.getString(3);
-		int showCost=rs.getInt(4);
-		int showSalesamount=rs.getInt(5);
-		int showPercentmargin=rs.getInt(6);
-		int showSupplycost=rs.getInt(7);
-		int showTax=rs.getInt(8);
-		int showSalesprice=rs.getInt(9);
-		int showMargincost=rs.getInt(10);
+		String showCost=rs.getString(4);
+		String showSalesamount=rs.getString(5);
+		String showPercentmargin=rs.getString(6);
+		String showSupplycost=rs.getString(7);
+		String showTax=rs.getString(8);
+		String showSalesprice=rs.getString(9);
+		String showMargincost=rs.getString(10);
 		return new ShowAllByMargincost(showrank, showCode, showName, showCost, showSalesamount, showPercentmargin, showSupplycost, showTax, showSalesprice, showMargincost);
 	}
 

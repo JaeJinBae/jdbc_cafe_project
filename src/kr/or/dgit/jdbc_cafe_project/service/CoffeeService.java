@@ -33,5 +33,13 @@ public class CoffeeService {
 		}
 		return null;
 	}
-
+	
+	public Coffee selectItemByCode(Object object){
+		try {
+			return coffeeDao.selectItemByCode((Coffee) object);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

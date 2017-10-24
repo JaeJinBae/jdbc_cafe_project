@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.xml.internal.stream.buffer.stax.StreamReaderBufferCreator;
+
 import kr.or.dgit.jdbc_cafe_project.dto.ShowAllBySalesprice;
 import kr.or.dgit.jdbc_cafe_project.jdbc.DBCon;
 
@@ -41,7 +43,7 @@ public class ShowAllBySalespriceDao implements SqlDao<ShowAllBySalesprice> {
 
 	@Override
 	public List<ShowAllBySalesprice> selectItemByAll() throws SQLException {
-		String sql="select * from showAllBySalesprice";
+		String sql="select * from showAllBySalesprice union select '합계', '', '', '', '', '',sum(supplycost), sum(tax), sum(salesprice), sum(margincost) from showAllBySalesprice";
 		List<ShowAllBySalesprice> sabs=new ArrayList<>();
 		
 		try (PreparedStatement pstmt=DBCon.getInstance().getConnection().prepareStatement(sql);
@@ -54,16 +56,17 @@ public class ShowAllBySalespriceDao implements SqlDao<ShowAllBySalesprice> {
 	}
 
 	private ShowAllBySalesprice getShow(ResultSet rs) throws SQLException {
-		int showrank=rs.getInt("crank");
+		String showrank=rs.getString("crank");
 		String showCode=rs.getString("code");
 		String showName=rs.getString("name");
-		int showCost=rs.getInt("cost");
-		int showSalesamount=rs.getInt("salesamount");
-		int showPercentmargin=rs.getInt("percentmargin");
-		int showSupplycost=rs.getInt("supplycost");
-		int showTax=rs.getInt("tax");
-		int showSalesprice=rs.getInt("salesprice");
-		int showMargincost=rs.getInt("margincost");
+//		System.out.println(String.format("%,d",rs.getInt("cost")));
+		String showCost=rs.getString("cost");
+		String showSalesamount=rs.getString("salesamount");
+		String showPercentmargin=rs.getString("percentmargin");
+		String showSupplycost=rs.getString("supplycost");
+		String showTax=rs.getString("tax");
+		String showSalesprice=rs.getString("salesprice");
+		String showMargincost=rs.getString("margincost");
 		return new ShowAllBySalesprice(showrank, showCode, showName, showCost, showSalesamount, showPercentmargin, showSupplycost, showTax, showSalesprice, showMargincost);
 	}
 

@@ -3,9 +3,9 @@ package kr.or.dgit.jdbc_cafe_project.dto;
 public class Coffee {
 	String code;
 	String name;
-	int cost;
-	int salesamount;
-	int percentmargin;
+	String cost;
+	String salesamount;
+	String percentmargin;
 	
 	public Coffee() {
 	}
@@ -15,7 +15,7 @@ public class Coffee {
 		this.name = name;
 	}
 
-	public Coffee(String code, String name, int cost, int salesamount, int percentmargin) {
+	public Coffee(String code, String name, String cost, String salesamount, String percentmargin) {
 		this.code = code;
 		this.name = name;
 		this.cost = cost;
@@ -43,27 +43,27 @@ public class Coffee {
 		this.name = name;
 	}
 
-	public int getCost() {
+	public String getCost() {
 		return cost;
 	}
 
-	public void setCost(int cost) {
+	public void setCost(String cost) {
 		this.cost = cost;
 	}
 
-	public int getSalesamount() {
+	public String getSalesamount() {
 		return salesamount;
 	}
 
-	public void setSalesamount(int salesamount) {
+	public void setSalesamount(String salesamount) {
 		this.salesamount = salesamount;
 	}
 
-	public int getPercentmargin() {
+	public String getPercentmargin() {
 		return percentmargin;
 	}
 
-	public void setPercentmargin(int percentmargin) {
+	public void setPercentmargin(String percentmargin) {
 		this.percentmargin = percentmargin;
 	}
 

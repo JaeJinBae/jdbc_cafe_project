@@ -1,22 +1,22 @@
 package kr.or.dgit.jdbc_cafe_project.dto;
 
 public class ShowAllByMargincost {
-	int crank;
+	String crank;
 	String code;
 	String name;
-	int cost;
-	int salesamount;
-	int percentmargin;
-	int supplycost;
-	int tax;
-	int salesprice;
-	int margincost;
+	String cost;
+	String salesamount;
+	String percentmargin;
+	String supplycost;
+	String tax;
+	String salesprice;
+	String margincost;
 	
 	public ShowAllByMargincost() {
 	}
 	
-	public ShowAllByMargincost(int crank, String code, String name, int cost, int salesamount, int percentmargin, int supplycost,
-			int tax, int salesprice, int margincost) {
+	public ShowAllByMargincost(String crank, String code, String name, String cost, String salesamount, String percentmargin, String supplycost,
+			String tax, String salesprice, String margincost) {
 		this.crank = crank;
 		this.code = code;
 		this.name = name;

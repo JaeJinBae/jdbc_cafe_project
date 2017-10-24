@@ -24,9 +24,9 @@ public class CoffeeDao implements SqlDao<Coffee> {
 		try(PreparedStatement pstmt=DBCon.getInstance().getConnection().prepareStatement(sql);){
 			pstmt.setString(1, item.getCode());
 			pstmt.setString(2, item.getName());
-			pstmt.setInt(3, item.getCost());
-			pstmt.setInt(4, item.getSalesamount());
-			pstmt.setInt(5, item.getPercentmargin());
+			pstmt.setString(3, item.getCost());
+			pstmt.setString(4, item.getSalesamount());
+			pstmt.setString(5, item.getPercentmargin());
 			pstmt.executeUpdate();
 			JOptionPane.showMessageDialog(null, "입력 완료!");
 		}catch (SQLException e) {
@@ -37,9 +37,9 @@ public class CoffeeDao implements SqlDao<Coffee> {
 	public void updateItem(Coffee item) throws SQLException {
 		String sql = "update coffee set cost=?, salesamount=?, percentmargin=? where code=?";
 		try (PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);){
-			pstmt.setInt(1, item.getCost());
-			pstmt.setInt(2, item.getSalesamount());
-			pstmt.setInt(3, item.getPercentmargin());
+			pstmt.setString(1, item.getCost());
+			pstmt.setString(2, item.getSalesamount());
+			pstmt.setString(3, item.getPercentmargin());
 			pstmt.setString(4, item.getCode());
 			pstmt.executeUpdate();
 			JOptionPane.showMessageDialog(null, "수정완료");
@@ -97,9 +97,9 @@ public class CoffeeDao implements SqlDao<Coffee> {
 	private Coffee getCoffee(ResultSet rs) throws SQLException {
 		String coffeeCode=rs.getString("code");
 		String coffeeName=rs.getString("name");
-		int coffeeCost=rs.getInt("cost");
-		int cofeeSalesamount=rs.getInt("salesamount");
-		int coffeePercentmargin=rs.getInt("percentmargin");
+		String coffeeCost=rs.getString("cost");
+		String cofeeSalesamount=rs.getString("salesamount");
+		String coffeePercentmargin=rs.getString("percentmargin");
 		return new Coffee(coffeeCode, coffeeName, coffeeCost, cofeeSalesamount, coffeePercentmargin);
 	}
 }

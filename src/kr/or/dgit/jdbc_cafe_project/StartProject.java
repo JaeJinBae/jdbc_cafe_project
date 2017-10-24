@@ -11,21 +11,19 @@ import java.util.Vector;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import javafx.scene.control.ComboBox;
-import kr.or.dgit.jdbc_cafe_project.content.CoffeeContent;
 import kr.or.dgit.jdbc_cafe_project.dao.CoffeeDao;
 import kr.or.dgit.jdbc_cafe_project.dto.Coffee;
 import kr.or.dgit.jdbc_cafe_project.service.CoffeeService;
 import kr.or.dgit.jdbc_cafe_project.view.CoffeeView;
 import kr.or.dgit.jdbc_cafe_project.view.ShowAllByMargincostView;
 import kr.or.dgit.jdbc_cafe_project.view.ShowAllBySalespriceView;
-import javax.swing.JComboBox;
 
 public class StartProject extends JFrame implements ActionListener {
 
@@ -70,6 +68,7 @@ public class StartProject extends JFrame implements ActionListener {
 		panel.add(lblCode);
 		
 		comboBox = new JComboBox();
+		comboBox.addActionListener(this);
 		setCoffeeCode();
 		panel.add(comboBox);
 		
@@ -81,6 +80,7 @@ public class StartProject extends JFrame implements ActionListener {
 		panel_1.add(lblName);
 		
 		tfName = new JTextField();
+		setName();
 		
 		panel_1.add(tfName);
 		tfName.setColumns(10);
@@ -157,12 +157,20 @@ public class StartProject extends JFrame implements ActionListener {
 		panel_5.add(btnShow2);
 	}
 	
+	public void setName(){
+		tfName.setText(getName((Coffee) comboBox.getSelectedItem()));
+	}
+	
+	public String getName(Coffee item){
+		return service.selectItemByCode(item).getName();
+	}
+	
 	public Coffee getContent() {
 		Coffee coffeeCode=(Coffee) comboBox.getSelectedItem();
 		String coffeeName=tfName.getText().trim();
-		int coffeeCost=Integer.parseInt(tfCost.getText().trim());
-		int coffeeSalesprice=Integer.parseInt(tfSalesPrice.getText().trim());
-		int coffeePercentmargin=Integer.parseInt(tfPercentMargin.getText().trim());
+		String coffeeCost=tfCost.getText().trim();
+		String coffeeSalesprice=tfSalesPrice.getText().trim();
+		String coffeePercentmargin=tfPercentMargin.getText().trim();
 		return new Coffee(coffeeCode.getCode(), coffeeName, coffeeCost, coffeeSalesprice, coffeePercentmargin);	
 	}
 	
@@ -174,6 +182,9 @@ public class StartProject extends JFrame implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == comboBox) {
+			do_comboBox_actionPerformed(e);
+		}
 		if (e.getSource() == btnAdd) {
 			do_btnAdd_actionPerformed(e);
 		}
@@ -184,4 +195,7 @@ public class StartProject extends JFrame implements ActionListener {
 	}
 	
 	
+	protected void do_comboBox_actionPerformed(ActionEvent e) {
+		setName();
+	}
 }

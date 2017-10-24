@@ -2,17 +2,17 @@ package kr.or.dgit.jdbc_cafe_project.dto;
 
 public class Goods {
 	String goodscode;
-	int supplycost;
-	int tax;
-	int salesprice;
-	int margincost;
+	String supplycost;
+	String tax;
+	String salesprice;
+	String margincost;
 	
 	
 	
 	public Goods() {
 	}
 
-	public Goods(String goodscode, int supplycost, int tax, int salesprice, int margincost) {
+	public Goods(String goodscode, String supplycost, String tax, String salesprice, String margincost) {
 		this.goodscode = goodscode;
 		this.supplycost = supplycost;
 		this.tax = tax;
@@ -35,35 +35,35 @@ public class Goods {
 		this.goodscode = goodscode;
 	}
 
-	public int getSupplycost() {
+	public String getSupplycost() {
 		return supplycost;
 	}
 
-	public void setSupplycost(int supplycost) {
+	public void setSupplycost(String supplycost) {
 		this.supplycost = supplycost;
 	}
 
-	public int getTax() {
+	public String getTax() {
 		return tax;
 	}
 
-	public void setTax(int tax) {
+	public void setTax(String tax) {
 		this.tax = tax;
 	}
 
-	public int getSalesprice() {
+	public String getSalesprice() {
 		return salesprice;
 	}
 
-	public void setSalesprice(int salesprice) {
+	public void setSalesprice(String salesprice) {
 		this.salesprice = salesprice;
 	}
 
-	public int getMargincost() {
+	public String getMargincost() {
 		return margincost;
 	}
 
-	public void setMargincost(int margincost) {
+	public void setMargincost(String margincost) {
 		this.margincost = margincost;
 	}
 

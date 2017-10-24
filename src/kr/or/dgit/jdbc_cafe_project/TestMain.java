@@ -51,7 +51,7 @@ public class TestMain {
 	}
 
 	private static void testInsert() {
-		Coffee coffee=new Coffee("B001", "딸기쉐이크", 5200, 250, 12);
+		Coffee coffee=new Coffee("B001", "딸기쉐이크", "5200", "250", "12");
 		CoffeeDao dao=CoffeeDao.getInstance();
 		try {
 			dao.insertItem(coffee);
