@@ -21,6 +21,7 @@ public class ShowAllBySalespriceView extends JFrame {
 	
 	
 	public ShowAllBySalespriceView() {
+		setTitle("판매금액 순위로 보기");
 		service=new ShowAllBySalespriceService();
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 850, 300);

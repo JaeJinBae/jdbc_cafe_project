@@ -19,6 +19,7 @@ public class ShowAllByMargincostView extends JFrame {
 	
 
 	public ShowAllByMargincostView() {
+		setTitle("마진금액 순위로 보기");
 		service=new ShowAllByMargincostService();
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 850, 300);
